@@ -32,16 +32,16 @@ const store = createStore(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-function HelloComponent(props) {
+function BadComponent(props) {
   if (props.data.loading) {
     return null;
   }
 
-  const name = props.data.viewer.name;
+  const name = props.data.typo.name;
   return <p>Hi {name}</p>;
 }
 
-HelloComponent.propTypes = {
+BadComponent.propTypes = {
   data: React.PropTypes.object.isRequired,
 };
 
@@ -59,13 +59,13 @@ function mapQueriesToProps() {
   };
 }
 
-const HelloContainer = connect({
+const BadContainer = connect({
   mapQueriesToProps,
-})(HelloComponent);
+})(BadComponent);
 
 render(
   <ApolloProvider store={store} client={client}>
-    <HelloContainer />
+    <BadContainer />
   </ApolloProvider>,
   document.getElementById('root')
 );
